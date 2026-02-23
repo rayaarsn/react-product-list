@@ -1,6 +1,7 @@
 import { ProductList } from './Component/ProductList';
 import { ProductCard } from './Component/ProductCard';
 import './App.css';
+import { Fragment } from 'react/jsx-runtime';
 
 function App() {
   const products = [
@@ -51,18 +52,20 @@ function App() {
           />
         ))}
       </ProductList>
-      <div>
-        <h2>Product which cost up to $500</h2>
-        <ul>
-          {products
-            .filter(({ price }) => price > 500)
-            .map(({ title, price }) => (
-              <li key={title}>
+
+      <h2>Product which cost up to $500</h2>
+      <ul>
+        {products
+          .filter(({ price }) => price > 500)
+          .map(({ title, price }) => (
+            <Fragment key={title}>
+              <hr style={{ borderColor: 'slategray' }} />
+              <p>
                 {title} - ${price}
-              </li>
-            ))}
-        </ul>
-      </div>
+              </p>
+            </Fragment>
+          ))}
+      </ul>
     </div>
   );
 }
